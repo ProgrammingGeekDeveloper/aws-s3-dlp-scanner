@@ -31,3 +31,9 @@ When a file is uploaded to a "Source" bucket, an S3 Event Notification triggers 
 - Integration with **Amazon SES** to send email alerts to the SOC team.
 - Adding support for more patterns (Secret Keys, Private Keys, PII).
 - Implementation using **Infrastructure as Code (Terraform)**.
+
+  ## Security Implementation Details
+  **Principle of Least Privilege**: The execution role is scoped strictly to the source and quarantine buckets. It has no access to other AWS resources.
+  **Attack Surface Reduction**: By using a serverless architecture (Lambda), we eliminate the need to manage and patch underlying EC2 instances.
+ **Automated Remediation**: The "mean time to respond" (MTTR) is reduced to seconds, as the system acts immediately upon file upload without human intervention.
+
