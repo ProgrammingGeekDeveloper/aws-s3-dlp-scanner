@@ -32,12 +32,13 @@ When a file is uploaded to a "Source" bucket, an S3 Event Notification triggers 
 - Adding support for more patterns (Secret Keys, Private Keys, PII).
 - Implementation using **Infrastructure as Code (Terraform)**.
 
-  ## Security Implementation Details
-  **Principle of Least Privilege**: The execution role is scoped strictly to the source and quarantine buckets. It has no access to other AWS resources.
-  **Attack Surface Reduction**: By using a serverless architecture (Lambda), we eliminate the need to manage and patch underlying EC2 instances.
- **Automated Remediation**: The "mean time to respond" (MTTR) is reduced to seconds, as the system acts immediately upon file upload without human intervention.
+## Security Implementation Details
+* **Principle of Least Privilege**: The execution role is scoped strictly to the source and quarantine buckets. It has no access to other AWS resources.
+* **Attack Surface Reduction**: By using a serverless architecture (Lambda), we eliminate the need to manage and patch underlying EC2 instances.
+* **Automated Remediation**: The "mean time to respond" (MTTR) is reduced to seconds, as the system acts immediately upon file upload without human intervention.
 
-  graph TD
+ ```mermaid
+graph TD
     A[User/Developer] -- "Uploads File (with Secret)" --> B(S3 Source Bucket)
     B -- "S3 Event Notification" --> C{AWS Lambda Scanner}
     C -- "Pattern Match Found" --> D[Copy to Quarantine Bucket]
@@ -47,5 +48,8 @@ When a file is uploaded to a "Source" bucket, an S3 Event Notification triggers 
     style B fill:#f96,stroke:#333,stroke-width:2px
     style D fill:#f66,stroke:#333,stroke-width:2px
     style C fill:#69f,stroke:#333,stroke-width:4px
+
+
+
 
 
