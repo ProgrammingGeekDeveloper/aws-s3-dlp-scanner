@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ReadFromSource",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::scanner-source-untrusted-denisgitonga/*"
+        },
+        {
+            "Sid": "WriteToQuarantine",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::scanner-quarantine-jail-denisgitonga/*"
+        }
+    ]
+}
